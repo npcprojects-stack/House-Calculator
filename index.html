@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Nilprabha Constructions</title>
+<title>Nilprabha Construction Budget Calculator</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,7 +19,7 @@ font-family:'Poppins',sans-serif;
 
 body{
 
-background:linear-gradient(135deg,#0b6e4f,#2e8b57);
+background:linear-gradient(135deg,#e8f5e9,#ffffff);
 
 min-height:100vh;
 
@@ -29,31 +29,31 @@ justify-content:center;
 
 align-items:center;
 
-padding:20px;
+padding:25px;
 
 }
 
-.card{
-
-background:white;
+.container{
 
 width:100%;
 
-max-width:420px;
+max-width:550px;
 
-padding:25px;
+background:white;
 
 border-radius:20px;
 
-box-shadow:0 15px 40px rgba(0,0,0,.25);
+padding:30px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.12);
 
 }
 
 .logo{
 
-text-align:center;
+font-size:55px;
 
-font-size:30px;
+text-align:center;
 
 }
 
@@ -61,29 +61,37 @@ h1{
 
 text-align:center;
 
-color:#0b6e4f;
-
 margin-top:10px;
+
+color:#1b5e20;
+
+font-size:28px;
 
 }
 
-p{
+.subtitle{
 
 text-align:center;
 
 color:#666;
 
-margin-bottom:20px;
+margin-bottom:25px;
+
+font-size:14px;
 
 }
 
 label{
 
+display:block;
+
+margin-top:18px;
+
+margin-bottom:8px;
+
 font-weight:600;
 
-margin-top:15px;
-
-display:block;
+color:#333;
 
 }
 
@@ -93,13 +101,23 @@ width:100%;
 
 padding:14px;
 
-margin-top:8px;
-
-border-radius:10px;
+border-radius:12px;
 
 border:1px solid #ccc;
 
 font-size:16px;
+
+outline:none;
+
+transition:.3s;
+
+}
+
+input:focus,select:focus{
+
+border-color:#2e7d32;
+
+box-shadow:0 0 8px rgba(46,125,50,.2);
 
 }
 
@@ -107,15 +125,15 @@ button{
 
 width:100%;
 
-padding:15px;
+margin-top:28px;
 
-margin-top:20px;
+padding:15px;
 
 border:none;
 
-border-radius:12px;
+border-radius:14px;
 
-background:#0b6e4f;
+background:#2e7d32;
 
 color:white;
 
@@ -131,51 +149,127 @@ transition:.3s;
 
 button:hover{
 
-background:#09553d;
+background:#1b5e20;
+
+transform:translateY(-2px);
 
 }
 
 .result{
 
-margin-top:20px;
+margin-top:30px;
 
-background:#f4fff8;
+background:#f1f8e9;
+
+padding:25px;
+
+border-radius:15px;
+
+display:none;
+
+animation:fade .4s;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.result h2{
+
+color:#2e7d32;
+
+text-align:center;
+
+margin-bottom:20px;
+
+}
+
+.total{
+
+font-size:34px;
+
+font-weight:bold;
+
+text-align:center;
+
+color:#1b5e20;
+
+margin-bottom:25px;
+
+}
+
+.breakdown{
+
+background:white;
 
 padding:18px;
 
 border-radius:12px;
 
-display:none;
-
 }
 
-.amount{
+.row{
 
-font-size:32px;
+display:flex;
 
-font-weight:bold;
+justify-content:space-between;
 
-color:#0b6e4f;
+margin:10px 0;
 
-margin-top:10px;
+font-size:15px;
 
 }
 
 .footer{
 
-margin-top:20px;
+margin-top:25px;
 
 text-align:center;
 
 font-size:13px;
 
-color:#777;
+color:#666;
 
-}.amount2{
+line-height:1.6;
 
-font-size:18px;
+}
 
-margin-top:10px;
+@media(max-width:600px){
+
+.container{
+
+padding:22px;
+
+}
+
+h1{
+
+font-size:24px;
+
+}
+
+.total{
+
+font-size:28px;
+
+}
 
 }
 
@@ -185,51 +279,163 @@ margin-top:10px;
 
 <body>
 
-<div class="card">
+<div class="container">
 
 <div class="logo">🏗️</div>
 
 <h1>Nilprabha Constructions</h1>
 
-<p>House Construction Cost Calculator</p>
+<p class="subtitle">
+Professional House Construction Budget Calculator
+</p>
 
 <label>Built-up Area (sq ft)</label>
 
-<input type="number" id="area" placeholder="Example: 1000">
+<input
+type="number"
+id="area"
+placeholder="Example: 1000">
 
 <label>Number of Floors</label>
 
-<input type="number" id="floors" value="1">
+<input
+type="number"
+id="floors"
+placeholder="Example: 2"
+value="1">
 
-<label>Construction Quality</label>
+<label>Select Construction Type</label>
+
+<select id="type">
+
+<option value="labour">
+Labour Only
+</option>
+
+<option value="material">
+Labour + Material
+</option>
+
+</select><label>Select Quality</label>
 
 <select id="quality">
 
-<option value="1800">🟢 Basic</option>
+<option value="basic">
+🟢 Basic
+</option>
 
-<option value="2300" selected>🔵 Standard</option>
+<option value="standard">
+🔵 Standard
+</option>
 
-<option value="3000">🟡 Premium</option>
+<option value="premium">
+🟡 Premium
+</option>
 
 </select>
 
-<button onclick="calculate()">Calculate Budget</button>
+<button onclick="calculateBudget()">
+
+Calculate Budget
+
+</button>
 
 <div class="result" id="result">
 
-<div>Estimated Construction Cost</div>
+<h2>Estimated Construction Cost</h2>
 
-<div class="amount" id="cost">₹0</div>
+<div class="total" id="totalCost">
 
-<div class="amount2" id="areaResult"></div>
+₹0
+
+</div>
+
+<div class="breakdown">
+
+<div class="row">
+
+<span>Foundation</span>
+
+<span id="foundation"></span>
+
+</div>
+
+<div class="row">
+
+<span>Structure</span>
+
+<span id="structure"></span>
+
+</div>
+
+<div class="row">
+
+<span>Brickwork</span>
+
+<span id="brickwork"></span>
+
+</div>
+
+<div class="row">
+
+<span>Flooring</span>
+
+<span id="flooring"></span>
+
+</div>
+
+<div class="row">
+
+<span>Electrical</span>
+
+<span id="electrical"></span>
+
+</div>
+
+<div class="row">
+
+<span>Plumbing</span>
+
+<span id="plumbing"></span>
+
+</div>
+
+<div class="row">
+
+<span>Painting</span>
+
+<span id="painting"></span>
+
+</div>
+
+<div class="row">
+
+<span>Doors & Windows</span>
+
+<span id="doors"></span>
+
+</div>
+
+<div class="row">
+
+<span>Miscellaneous</span>
+
+<span id="misc"></span>
+
+</div>
 
 </div>
 
 <div class="footer">
 
-Nilprabha Constructions<br>
+Estimate only.<br>
 
-Buldhana, Maharashtra
+Actual cost depends on design,
+location,
+soil condition,
+labour charges and material selection.
+
+</div>
 
 </div>
 
@@ -237,35 +443,121 @@ Buldhana, Maharashtra
 
 <script>
 
-function calculate(){
+function formatMoney(value){
+
+return "₹"+value.toLocaleString("en-IN");
+
+}
+
+function calculateBudget(){
 
 let area=parseFloat(document.getElementById("area").value);
 
-let floors=parseFloat(document.getElementById("floors").value);
+let floors=parseFloat(document.getElementById("floors").value);if(isNaN(area)||area<=0){
 
-let rate=parseFloat(document.getElementById("quality").value);
-
-if(isNaN(area)||area<=0){
-
-alert("Please enter Built-up Area.");
+alert("Please enter a valid built-up area.");
 
 return;
 
 }
 
-let totalArea=area*floors;
+if(isNaN(floors)||floors<=0){
 
-let totalCost=totalArea*rate;
-
-document.getElementById("result").style.display="block";
-
-document.getElementById("cost").innerHTML="₹"+totalCost.toLocaleString("en-IN");
-
-document.getElementById("areaResult").innerHTML="Built-up Area : "+totalArea.toLocaleString("en-IN")+" sq ft";
+floors=1;
 
 }
 
-</script>
+let type=document.getElementById("type").value;
+
+let quality=document.getElementById("quality").value;
+
+let rate=0;
+
+if(type=="labour"){
+
+if(quality=="basic"){
+
+rate=320;
+
+}
+
+else if(quality=="standard"){
+
+rate=450;
+
+}
+
+else{
+
+rate=600;
+
+}
+
+}
+
+else{
+
+if(quality=="basic"){
+
+rate=1700;
+
+}
+
+else if(quality=="standard"){
+
+rate=2200;
+
+}
+
+else{
+
+rate=2900;
+
+}
+
+}
+
+let total=area*floors*rate;
+
+document.getElementById("result").style.display="block";
+
+document.getElementById("totalCost").innerHTML=formatMoney(total);
+
+let foundation=total*0.10;
+
+let structure=total*0.30;
+
+let brickwork=total*0.10;
+
+let flooring=total*0.10;
+
+let electrical=total*0.08;
+
+let plumbing=total*0.07;
+
+let painting=total*0.07;let doors=total*0.07;
+
+let misc=total*0.11;
+
+document.getElementById("foundation").innerHTML=formatMoney(foundation);
+
+document.getElementById("structure").innerHTML=formatMoney(structure);
+
+document.getElementById("brickwork").innerHTML=formatMoney(brickwork);
+
+document.getElementById("flooring").innerHTML=formatMoney(flooring);
+
+document.getElementById("electrical").innerHTML=formatMoney(electrical);
+
+document.getElementById("plumbing").innerHTML=formatMoney(plumbing);
+
+document.getElementById("painting").innerHTML=formatMoney(painting);
+
+document.getElementById("doors").innerHTML=formatMoney(doors);
+
+document.getElementById("misc").innerHTML=formatMoney(misc);
+
+}</script>
 
 </body>
 
