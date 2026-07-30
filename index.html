@@ -1,2 +1,111 @@
 # House-Calculator
 House construction calculator
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nilprabha Construction Calculator</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f4f4;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:400px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+h1{
+text-align:center;
+color:#0B6E4F;
+}
+
+input,select,button{
+width:100%;
+padding:12px;
+margin:10px 0;
+font-size:16px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+background:#0B6E4F;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:#09563d;
+}
+
+.result{
+margin-top:20px;
+padding:15px;
+background:#eef;
+border-radius:10px;
+font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏠 Nilprabha Constructions</h1>
+
+<label>Built-up Area (sq ft)</label>
+<input type="number" id="area" placeholder="1000">
+
+<label>Construction Rate (₹/sq ft)</label>
+<input type="number" id="rate" value="2200">
+
+<label>Floors</label>
+<input type="number" id="floors" value="1">
+
+<button onclick="calculate()">Calculate Budget</button>
+
+<div class="result" id="output">
+Enter values and press Calculate.
+</div>
+
+</div>
+
+<script>
+
+function calculate(){
+
+let area=Number(document.getElementById("area").value);
+
+let rate=Number(document.getElementById("rate").value);
+
+let floors=Number(document.getElementById("floors").value);
+
+let totalArea=area*floors;
+
+let cost=totalArea*rate;
+
+document.getElementById("output").innerHTML=
+
+"<h2>Estimated Cost</h2>₹"+cost.toLocaleString('en-IN')+
+
+"<br><br>Total Built-up Area : "+totalArea+" sq ft";
+
+}
+
+</script>
+
+</body>
+</html>
