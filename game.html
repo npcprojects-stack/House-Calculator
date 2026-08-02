@@ -43,8 +43,27 @@ border-radius:12px;
 const canvas=document.getElementById("gameCanvas");
 const ctx=canvas.getContext("2d");
 
-ctx.fillStyle="#b55239";
-ctx.fillRect(150,650,100,30);
+let x = 0;
+let direction = 3;
+
+function gameLoop() {
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#b55239";
+    ctx.fillRect(x,650,100,30);
+
+    x += direction;
+
+    if(x <= 0 || x >= 300){
+        direction *= -1;
+    }
+
+    requestAnimationFrame(gameLoop);
+
+}
+
+gameLoop();
 
 </script>
 
